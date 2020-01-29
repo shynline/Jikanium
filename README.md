@@ -19,6 +19,7 @@ This sample is written in Kotlin and uses the following Components:
  - mockwebserver
  
 There's no RXJava because thanks to Kotlin Flow and Coroutine support for retrofit we don't need it in Kotlin anymore!
+
 It uses [Jikan](https://jikan.moe/)'s REST API
 
 ### License
