@@ -1,4 +1,5 @@
 # Jikanium
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83a1575ed53045f89db508a2442d382e)](https://app.codacy.com/manual/shynline/Jikanium?utm_source=github.com&utm_medium=referral&utm_content=shynline/Jikanium&utm_campaign=Badge_Grade_Dashboard)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Twitter](https://img.shields.io/badge/Twitter-%40shynline-red?style=flat)](http://twitter.com/shynline)
