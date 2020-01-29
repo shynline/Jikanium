@@ -12,10 +12,10 @@ This sample is written in Kotlin and uses the following Components:
 -  Room
 -  Retrofit
 -  Dagger2
--  Junit4
+-  Junit
 -  Mockk
--  truth
--  mockwebserver
+-  Truth
+-  Mockwebserver
  
 There's no RXJava because thanks to Kotlin Flow and Coroutine support for retrofit we don't need it in Kotlin anymore!
 
