@@ -8,8 +8,14 @@ package app.shynline.jikanium.data
 sealed class Result<out R> {
 
     data class Success<out T>(val data: T) : Result<T>()
+    /***
+     * Result class for the cases which API doesn't have new data
+     */
     object NotModified : Result<Nothing>()
     data class Error(val exception: Exception) : Result<Nothing>()
+    /***
+     * Result class for the cases which data is loading from remote server
+     */
     object Loading : Result<Nothing>()
 
     override fun toString(): String {

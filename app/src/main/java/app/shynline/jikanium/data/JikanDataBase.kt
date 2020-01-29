@@ -16,5 +16,8 @@ import app.shynline.jikanium.data.anime.local.AnimeDao
     ], version = 1, exportSchema = false
 )
 abstract class JikanDataBase : RoomDatabase() {
+    /***
+     * Dao for access to animes table
+     */
     abstract fun animeDao(): AnimeDao
 }
