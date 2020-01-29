@@ -11,6 +11,7 @@ This sample is written in Kotlin and uses the following Components:
 -  Navigation
 -  Room
 -  Retrofit
+-  GSON
 -  Dagger2
 -  Junit
 -  Mockk
