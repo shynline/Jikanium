@@ -25,9 +25,32 @@ fun <T> Response<T>.toResult(): Result<T> {
     }
 }
 
+/***
+ *
+ */
 class EmptyBody : Exception("Empty body.")
+
+/***
+ *
+ */
 class BadRequest : Exception("Bad request.")
+
+/***
+ *
+ */
 class NotFound : Exception("Not found.")
+
+/***
+ *
+ */
 class MethodNotAllowed : Exception("Method not allowed.")
+
+/***
+ *
+ */
 class TooManyRequest : Exception("Too many request.")
+
+/***
+ *
+ */
 class InternalServerError : Exception("Internal server error.")
