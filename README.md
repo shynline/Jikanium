@@ -4,11 +4,10 @@
 [![Twitter](https://img.shields.io/badge/Twitter-%40shynline-red?style=flat)](http://twitter.com/shynline)
 
 ### Summary
-
 This sample is written in Kotlin and uses the following Components:
 -  ViewModel
 -  LiveData
--  Data Binding
+-  DataBinding
 -  Navigation
 -  Room
 -  Retrofit
