@@ -1,7 +1,8 @@
 # Jikanium
 
-This sample is written in Kotlin and uses the following Components:
+### Summary
 
+This sample is written in Kotlin and uses the following Components:
  - ViewModel
  - LiveData
  - Data Binding
@@ -9,7 +10,6 @@ This sample is written in Kotlin and uses the following Components:
  - Room
  - Retrofit
  - Dagger2
- 
  - Junit4
  - Mockk
  - truth
