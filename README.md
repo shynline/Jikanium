@@ -3,21 +3,20 @@
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Twitter](https://img.shields.io/badge/Twitter-%40shynline-red?style=flat)](http://twitter.com/shynline)
-
 ### Summary
 This sample is written in Kotlin and uses the following Components:
--  ViewModel
--  LiveData
--  DataBinding
--  Navigation
--  Room
--  Retrofit
--  GSON
--  Dagger2
--  Junit
--  Mockk
--  Truth
--  Mockwebserver
+- ViewModel
+- LiveData
+- DataBinding
+- Navigation
+- Room
+- Retrofit
+- GSON
+- Dagger2
+- Junit
+- Mockk
+- Truth
+- Mockwebserver
  
 There's no use case of RXJava in this project.
 Thanks to Kotlin Flow and Coroutine we don't need that anymore!
