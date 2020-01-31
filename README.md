@@ -26,6 +26,7 @@ It uses [Jikan](https://jikan.moe/)'s REST API
 ## License
 
 ```License
+MIT License
 Copyright (c) 2020 Shayan Sabahi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
