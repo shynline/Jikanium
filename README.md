@@ -1,4 +1,5 @@
 # Jikanium
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83a1575ed53045f89db508a2442d382e)](https://app.codacy.com/manual/shynline/Jikanium?utm_source=github.com&utm_medium=referral&utm_content=shynline/Jikanium&utm_campaign=Badge_Grade_Dashboard)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Twitter](https://img.shields.io/badge/Twitter-%40shynline-red?style=flat)](http://twitter.com/shynline)
@@ -11,13 +12,15 @@ This sample is written in Kotlin and uses the following Components:
 -  Navigation
 -  Room
 -  Retrofit
+-  GSON
 -  Dagger2
--  Junit4
+-  Junit
 -  Mockk
--  truth
--  mockwebserver
+-  Truth
+-  Mockwebserver
  
-There's no RXJava because thanks to Kotlin Flow and Coroutine support for retrofit we don't need it in Kotlin anymore!
+There's no use case of RXJava in this project.
+Thanks to Kotlin Flow and Coroutine we don't need that anymore!
 
 It uses [Jikan](https://jikan.moe/)'s REST API
 
