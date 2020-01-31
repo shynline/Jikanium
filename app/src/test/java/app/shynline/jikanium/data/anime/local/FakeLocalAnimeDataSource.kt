@@ -25,4 +25,28 @@ class FakeLocalAnimeDataSource : AnimeDataSource {
 
     override suspend fun insertAnime(anime: Anime) {
     }
+
+    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
+        return if (existed) {
+            if (expired) {
+                val data: MutableList<Anime> = mutableListOf()
+                id.forEach {
+                    data.add(Anime(id = it, cached = true, expiryDate = 0))
+                }
+                Result.Success(data)
+            } else {
+                val data: MutableList<Anime> = mutableListOf()
+                id.forEach {
+                    data.add(Anime(id = it, cached = true, expiryDate = Date().time * 2))
+                }
+                Result.Success(data)
+            }
+        } else {
+            Result.Success(listOf())
+        }
+    }
+
+    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
+
+    }
 }

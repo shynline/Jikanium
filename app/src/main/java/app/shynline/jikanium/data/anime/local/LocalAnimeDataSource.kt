@@ -28,7 +28,26 @@ class LocalAnimeDataSource @Inject constructor(
         }
     }
 
+
+    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> =
+        withContext(ioDispatcher) {
+            return@withContext try {
+                val anime = animeDao.getAnimeCollectionById(id)
+                if (anime.isNotEmpty()) {
+                    Success(anime)
+                } else {
+                    Error(Exception("Anime not found!"))
+                }
+            } catch (e: Exception) {
+                Error(e)
+            }
+        }
+
     override suspend fun insertAnime(anime: Anime) = withContext(ioDispatcher) {
         animeDao.insertAnime(anime)
+    }
+
+    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
+        animeDao.insertCollectionOfAnime(anime)
     }
 }

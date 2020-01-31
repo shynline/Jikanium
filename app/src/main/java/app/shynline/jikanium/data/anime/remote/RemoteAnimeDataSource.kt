@@ -15,6 +15,10 @@ class RemoteAnimeDataSource @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeDataSource {
 
+    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
+        throw RuntimeException("Not supported by API")
+    }
+
     override suspend fun getAnime(id: Long): Result<Anime> = withContext(ioDispatcher) {
         return@withContext try {
             val raw = jikanApi.getAnime(id)
@@ -32,6 +36,10 @@ class RemoteAnimeDataSource @Inject constructor(
     }
 
     override suspend fun insertAnime(anime: Anime) {
+        throw RuntimeException("Not supported by API")
+    }
+
+    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
         throw RuntimeException("Not supported by API")
     }
 }

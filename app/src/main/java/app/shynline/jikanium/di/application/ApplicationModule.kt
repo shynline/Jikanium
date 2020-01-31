@@ -11,6 +11,13 @@ import app.shynline.jikanium.data.anime.DefaultAnimeRepository
 import app.shynline.jikanium.data.anime.local.AnimeDao
 import app.shynline.jikanium.data.anime.local.LocalAnimeDataSource
 import app.shynline.jikanium.data.anime.remote.RemoteAnimeDataSource
+import app.shynline.jikanium.data.requests.CacheDataBase
+import app.shynline.jikanium.data.requests.bygenre.DefaultGenreRepository
+import app.shynline.jikanium.data.requests.bygenre.GenreDataSource
+import app.shynline.jikanium.data.requests.bygenre.GenreRepository
+import app.shynline.jikanium.data.requests.bygenre.local.GenreDao
+import app.shynline.jikanium.data.requests.bygenre.local.LocalGenreDataSource
+import app.shynline.jikanium.data.requests.bygenre.remote.RemoteGenreDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -57,8 +64,24 @@ abstract class ApplicationModule {
     abstract fun bindRemoteDataSource(remoteAnimeDataSource: RemoteAnimeDataSource): AnimeDataSource
 
     @Singleton
+    @LocalDataSource
+    @Binds
+    abstract fun bindLocalGenreDataSource(localGenreDataSource: LocalGenreDataSource): GenreDataSource
+
+    @Singleton
+    @RemoteDataSource
+    @Binds
+    abstract fun bindRemoteGenreDataSource(remoteGenreDataSource: RemoteGenreDataSource): GenreDataSource
+
+
+
+    @Singleton
     @Binds
     abstract fun bindAnimeRepository(animeRepository: DefaultAnimeRepository): AnimeRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindGenreRepository(genreRepository: DefaultGenreRepository): GenreRepository
 }
 
 
@@ -94,6 +117,21 @@ object ApplicationModuleObject {
     @JvmStatic
     fun provideJikanDataBase(applicationContext: Context): JikanDataBase {
         return Room.databaseBuilder(applicationContext, JikanDataBase::class.java, "Jikan.db")
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideGenreDao(dataBase: CacheDataBase): GenreDao {
+        return dataBase.genreDao()
+    }
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideCacheDataBase(applicationContext: Context): CacheDataBase {
+        return Room.databaseBuilder(applicationContext, CacheDataBase::class.java, "Cache.db")
             .build()
     }
 

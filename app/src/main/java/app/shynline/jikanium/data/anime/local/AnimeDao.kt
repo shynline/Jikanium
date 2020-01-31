@@ -16,10 +16,22 @@ interface AnimeDao {
     suspend fun getAnimeById(id: Long): Anime?
 
     /***
+     * Get collection of anime by its id
+     */
+    @Query("SELECT * FROM animes WHERE id in (:id)")
+    suspend fun getAnimeCollectionById(id: List<Long>): List<Anime>
+
+    /***
      * Insert an anime into database
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAnime(anime: Anime)
+
+    /***
+     * Insert collection of anime into database
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCollectionOfAnime(anime: List<Anime>)
 
     /***
      * Update an anime

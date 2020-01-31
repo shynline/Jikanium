@@ -2,6 +2,10 @@ package app.shynline.jikanium.data
 
 import retrofit2.Response
 
+/***
+ * An extension function for retrofit response
+ * to convert it into Result wrapper
+ */
 fun <T> Response<T>.toResult(): Result<T> {
     return when (this.code()) {
         200 -> {

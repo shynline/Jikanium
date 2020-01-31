@@ -19,4 +19,11 @@ class FakeRemoteAnimeDataSource : AnimeDataSource {
 
     override suspend fun insertAnime(anime: Anime) {
     }
+
+    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
+        null!!
+    }
+
+    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
+    }
 }
