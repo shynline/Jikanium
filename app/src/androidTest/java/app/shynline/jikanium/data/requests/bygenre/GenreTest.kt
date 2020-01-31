@@ -15,6 +15,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 
+/**
+ * Test class for genreDao
+ *
+ */
 @RunWith(AndroidJUnit4::class)
 class GenreTest {
 
@@ -33,6 +37,9 @@ class GenreTest {
         db.close()
     }
 
+    /***
+     * test inserting genre with pages into database
+     */
     @Test
     fun test_insertGenreWithPagesAndRetrieve() = runBlocking {
         genreDao.deleteAllGenres()
@@ -52,6 +59,9 @@ class GenreTest {
         }
     }
 
+    /***
+     * test updating genre with pages in database
+     */
     @Test
     fun test_updateGenreWithPagesAndRetrieve() = runBlocking {
         genreDao.deleteAllGenres()

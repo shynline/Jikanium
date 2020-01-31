@@ -12,6 +12,9 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
+/***
+ * Default implementation of anime repository
+ */
 class DefaultAnimeRepository @Inject constructor(
     @LocalDataSource private val localAnimeDataSource: AnimeDataSource,
     @RemoteDataSource private val remoteAnimeDataSource: AnimeDataSource,
@@ -21,6 +24,9 @@ class DefaultAnimeRepository @Inject constructor(
 
     private val cachedAnimes by lazy { ConcurrentHashMap<Long, Anime>() }
 
+    /***
+     * Get a anime by its id
+     */
     override suspend fun getAnime(id: Long): Flow<Result<Anime>> = withContext(ioDispatcher) {
         return@withContext flow {
             // check cache
@@ -101,6 +107,9 @@ class DefaultAnimeRepository @Inject constructor(
         cachedAnimes[anime.id] = anime.copy()
     }
 
+    /***
+     * To clean the in memory cache
+     */
     override fun refreshCache() {
         cachedAnimes.clear()
     }

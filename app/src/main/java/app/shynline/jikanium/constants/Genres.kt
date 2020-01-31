@@ -2,6 +2,9 @@ package app.shynline.jikanium.constants
 
 data class AnimeGenre(val name: String, val value: Int)
 
+/***
+ * List of Anime genres and their value
+ */
 val animeGenres: List<AnimeGenre> = listOf(
     AnimeGenre("Action", 1),
     AnimeGenre("Adventure", 2),

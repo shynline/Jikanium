@@ -5,6 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+/***
+ * Genre page cache for api request entity
+ * represent each page of a specific genre
+ */
 @Entity(tableName = "genre_page")
 data class GenrePage(
     @PrimaryKey
@@ -28,15 +32,24 @@ data class GenrePage(
     var list: String = ""
 ) {
 
+    /***
+     * items setter converter
+     */
     fun setItems(_list: List<Long>): GenrePage {
         list = _list.joinToString(",")
         return this
     }
 
+    /***
+     * items getter converter
+     */
     fun getItems(): List<Long> {
         return list.split(",").filter { it.isNotBlank() && it.isNotEmpty() }.map { it.toLong() }
     }
 
+    /***
+     * Update the cache state of this entity
+     */
     fun updateCache(_cached: String?, ttl: String?) {
         _cached?.let { cached ->
             val c = cached == "1"

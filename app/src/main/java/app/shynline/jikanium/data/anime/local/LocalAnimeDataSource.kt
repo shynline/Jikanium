@@ -10,11 +10,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/***
+ * Local anime data source
+ */
 class LocalAnimeDataSource @Inject constructor(
     private val animeDao: AnimeDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeDataSource {
 
+    /***
+     * retrieve an anime by its id
+     * or return an error result
+     */
     override suspend fun getAnime(id: Long): Result<Anime> = withContext(ioDispatcher) {
         return@withContext try {
             val anime = animeDao.getAnimeById(id)
@@ -28,7 +35,10 @@ class LocalAnimeDataSource @Inject constructor(
         }
     }
 
-
+    /***
+     * retrieve a collection of anime by their id
+     * or return an error result
+     */
     override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> =
         withContext(ioDispatcher) {
             return@withContext try {
@@ -43,10 +53,16 @@ class LocalAnimeDataSource @Inject constructor(
             }
         }
 
+    /***
+     * Insert a single anime into database
+     */
     override suspend fun insertAnime(anime: Anime) = withContext(ioDispatcher) {
         animeDao.insertAnime(anime)
     }
 
+    /***
+     * Insert a collection of anime into database
+     */
     override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
         animeDao.insertCollectionOfAnime(anime)
     }

@@ -16,6 +16,9 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
+/***
+ * Default implementation of genre repository
+ */
 class DefaultGenreRepository @Inject constructor(
     @LocalDataSource private val localAnimeDataSource: AnimeDataSource,
     @LocalDataSource private val localGenreDataSource: GenreDataSource,
@@ -25,6 +28,9 @@ class DefaultGenreRepository @Inject constructor(
 
     private val cachedPages by lazy { ConcurrentHashMap<Int, GenreWithPage>() }
 
+    /***
+     * Get a list of anime for a specific genre in a page
+     */
     override suspend fun getAnimeListByGenre(genre: Int, page: Int): Flow<Result<List<Anime>>> =
         withContext(ioDispatcher) {
             return@withContext flow<Result<List<Anime>>> {
@@ -101,6 +107,9 @@ class DefaultGenreRepository @Inject constructor(
 
         }
 
+    /***
+     * clear in memory cache
+     */
     override suspend fun refreshCache() {
         cachedPages.clear()
     }

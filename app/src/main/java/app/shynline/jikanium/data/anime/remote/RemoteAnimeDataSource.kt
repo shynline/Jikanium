@@ -10,15 +10,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/***
+ * Remote anime data source
+ */
 class RemoteAnimeDataSource @Inject constructor(
     private val jikanApi: JikanApi,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeDataSource {
 
+    /***
+     * This method should not be called
+     */
     override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
         throw RuntimeException("Not supported by API")
     }
 
+
+    /***
+     * Fetch an anime by id from remote api
+     */
     override suspend fun getAnime(id: Long): Result<Anime> = withContext(ioDispatcher) {
         return@withContext try {
             val raw = jikanApi.getAnime(id)
@@ -35,10 +45,16 @@ class RemoteAnimeDataSource @Inject constructor(
         }
     }
 
+    /***
+     * This method should not be called
+     */
     override suspend fun insertAnime(anime: Anime) {
         throw RuntimeException("Not supported by API")
     }
 
+    /***
+     * This method should not be called
+     */
     override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
         throw RuntimeException("Not supported by API")
     }

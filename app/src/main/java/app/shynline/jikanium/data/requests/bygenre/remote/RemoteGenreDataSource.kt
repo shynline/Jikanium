@@ -11,11 +11,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/***
+ * Remote implementation of genre data source
+ */
 class RemoteGenreDataSource @Inject constructor(
     private val jikanApi: JikanApi,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GenreDataSource {
-
+    /***
+     * Fetch the list of anime in a specific genre by page
+     */
     override suspend fun getAnimeGenreByPage(genre: Int, page: Int): Result<AnimePageWrapper> =
         withContext(ioDispatcher) {
             return@withContext try {
@@ -33,14 +38,23 @@ class RemoteGenreDataSource @Inject constructor(
             }
         }
 
+    /***
+     * Not supported here
+     */
     override suspend fun getAnimeGenre(genre: Int): Result<GenreWithPage> {
         throw RuntimeException("Not supported by API")
     }
 
+    /***
+     * Not supported here
+     */
     override suspend fun insertAnimeGenre(genreWithPage: GenreWithPage) {
         throw RuntimeException("Not supported by API")
     }
 
+    /***
+     * Not supported here
+     */
     override suspend fun updateAnimeGenre(genreWithPage: GenreWithPage) {
         throw RuntimeException("Not supported by API")
     }

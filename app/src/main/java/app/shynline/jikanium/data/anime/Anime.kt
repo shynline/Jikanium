@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+/***
+ * Anime entity
+ */
 @Entity(tableName = "animes")
 data class Anime @JvmOverloads constructor(
     @SerializedName("request_hash")
@@ -27,6 +30,9 @@ data class Anime @JvmOverloads constructor(
     @ColumnInfo(name = "expiry_date")
     var expiryDate: Long = 0L
 ) {
+    /***
+     * Update the cache state of this entity
+     */
     fun updateCache(_cached: String?, ttl: String?) {
         _cached?.let { cached ->
             val c = cached == "1"

@@ -10,11 +10,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/***
+ * Local implementation of genre data source
+ */
 class LocalGenreDataSource @Inject constructor(
     private val genreDao: GenreDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GenreDataSource {
 
+    /***
+     * Get a specific genre with its pages if exists
+     * if not return Error result
+     */
     override suspend fun getAnimeGenre(genre: Int): Result<GenreWithPage> =
         withContext(ioDispatcher) {
             return@withContext try {
@@ -29,17 +36,26 @@ class LocalGenreDataSource @Inject constructor(
             }
         }
 
+    /***
+     * Insert a genre with its pages into genre dao
+     */
     override suspend fun insertAnimeGenre(genreWithPage: GenreWithPage) =
         withContext(ioDispatcher) {
             genreDao.insertGenre(genreWithPage.genre)
             genreDao.insertPages(genreWithPage.pages)
         }
 
+    /***
+     * Update a genre with its pages into genre dao
+     */
     override suspend fun updateAnimeGenre(genreWithPage: GenreWithPage) {
         genreDao.updateGenre(genreWithPage.genre)
         genreDao.updatePages(genreWithPage.pages)
     }
 
+    /***
+     * Not supported here
+     */
     override suspend fun getAnimeGenreByPage(genre: Int, page: Int): Result<AnimePageWrapper> {
         throw RuntimeException("Not supported!")
     }

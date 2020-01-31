@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+/***
+ * Genre cache for api request entity
+ */
 @Entity(tableName = "genres")
 data class Genre(
 
@@ -22,5 +25,4 @@ data class Genre(
     var count: Long = 0L
 
 
-) {
-}
+)

@@ -4,6 +4,9 @@ import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import com.google.gson.annotations.SerializedName
 
+/***
+ * A wrapper for api -> get anime by genre request
+ */
 data class AnimePageWrapper(
     var genrePage: GenrePage,
     @SerializedName("anime")
