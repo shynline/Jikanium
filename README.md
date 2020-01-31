@@ -7,16 +7,16 @@
 This sample is written in Kotlin and uses the following Components:
 -   ViewModel
 -   LiveData
-- DataBinding
-- Navigation
-- Room
-- Retrofit
-- GSON
-- Dagger2
-- Junit
-- Mockk
-- Truth
-- Mockwebserver
+-   DataBinding
+-   Navigation
+-   Room
+-   Retrofit
+-   GSON
+-   Dagger2
+-   Junit
+-   Mockk
+-   Truth
+-   Mockwebserver
  
 There's no use case of RXJava in this project.
 Thanks to Kotlin Flow and Coroutine we don't need that anymore!
