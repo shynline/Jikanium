@@ -1,6 +1,7 @@
 package app.shynline.jikanium.data.requests.bygenre.local
 
 import androidx.room.*
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.Genre
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
@@ -65,5 +66,18 @@ interface GenreDao {
      */
     @Query("DELETE FROM genre_page")
     suspend fun deleteAllGenres()
+
+    /***
+     * Insert collection of anime parts into database
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCollectionOfAnimePart(anime: List<AnimePart>)
+
+
+    /***
+     * Get collection of anime part by its id
+     */
+    @Query("SELECT * FROM anime_part WHERE id in (:id)")
+    suspend fun getAnimePartCollectionById(id: List<Long>): List<AnimePart>
 
 }

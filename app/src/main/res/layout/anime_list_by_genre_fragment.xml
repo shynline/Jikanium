@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="app.shynline.jikanium.ui.animelistbygenre.AnimeListByGenreViewModel" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layoutDescription="@xml/motion_scene"
+        tools:context="app.shynline.jikanium.ui.animelistbygenre.AnimeListByGenreFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            items="@{viewmodel.items}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_animation"
+            android:paddingBottom="?actionBarSize" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filterRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/filter_icon_size"
+                android:layout_height="@dimen/filter_icon_size"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/avd_anim_reverse"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genreList"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="48dp"
+            android:alpha="0"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:text="@string/anime_genre"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Title" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

@@ -24,6 +24,9 @@ class GenreTest {
 
     private lateinit var genreDao: GenreDao
     private lateinit var db: CacheDataBase
+    /***
+     * Setting up the in-memory database and dao
+     */
     @Before
     fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
@@ -31,6 +34,9 @@ class GenreTest {
         genreDao = db.genreDao()
     }
 
+    /***
+     * Closing database
+     */
     @After
     @Throws(IOException::class)
     fun tearDown() {

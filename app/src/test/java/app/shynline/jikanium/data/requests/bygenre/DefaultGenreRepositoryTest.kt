@@ -2,7 +2,6 @@ package app.shynline.jikanium.data.requests.bygenre
 
 import app.shynline.jikanium.RandomException
 import app.shynline.jikanium.data.Result
-import app.shynline.jikanium.data.anime.local.FakeLocalAnimeDataSource
 import app.shynline.jikanium.data.requests.bygenre.local.FakeLocalGenreDataSource
 import app.shynline.jikanium.data.requests.bygenre.remote.FakeRemoteGenreDataSource
 import com.google.common.truth.Truth.assertThat
@@ -17,7 +16,6 @@ import org.junit.Test
 class DefaultGenreRepositoryTest {
 
 
-    private val fakeLocalAnimeDataSource = FakeLocalAnimeDataSource()
     private lateinit var defaultGenreRepository: DefaultGenreRepository
     private val fakeLocalGenreDataSource = FakeLocalGenreDataSource()
     private val fakeRemoteGenreDataSource = FakeRemoteGenreDataSource()
@@ -29,7 +27,6 @@ class DefaultGenreRepositoryTest {
     @Before
     fun setUp() {
         defaultGenreRepository = DefaultGenreRepository(
-            fakeLocalAnimeDataSource,
             fakeLocalGenreDataSource, fakeRemoteGenreDataSource, Dispatchers.Unconfined
         )
     }

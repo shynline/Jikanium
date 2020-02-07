@@ -2,6 +2,7 @@ package app.shynline.jikanium.data.requests
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.Genre
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import app.shynline.jikanium.data.requests.bygenre.local.GenreDao
@@ -15,7 +16,8 @@ import app.shynline.jikanium.data.requests.bygenre.local.GenreDao
 @Database(
     entities = [
         Genre::class,
-        GenrePage::class
+        GenrePage::class,
+        AnimePart::class
     ], version = 1, exportSchema = false
 )
 abstract class CacheDataBase : RoomDatabase() {

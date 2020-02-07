@@ -4,6 +4,8 @@ import app.shynline.jikanium.JikanApi
 import app.shynline.jikanium.data.Result
 import app.shynline.jikanium.data.requests.bygenre.AnimePageWrapper
 import app.shynline.jikanium.data.requests.bygenre.GenreDataSource
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
+import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
 import app.shynline.jikanium.data.toResult
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,7 +28,9 @@ class RemoteGenreDataSource @Inject constructor(
             return@withContext try {
                 val raw = jikanApi.getAnimeListByGenre(genre, page)
                 val res = raw.toResult()
+
                 if (res is Result.Success) {
+                    res.data.genrePage = GenrePage()
                     res.data.genrePage.updateCache(
                         raw.headers()["X-Request-Cached"],
                         raw.headers()["X-Request-Cache-Ttl"]
@@ -56,6 +60,20 @@ class RemoteGenreDataSource @Inject constructor(
      * Not supported here
      */
     override suspend fun updateAnimeGenre(genreWithPage: GenreWithPage) {
+        throw RuntimeException("Not supported by API")
+    }
+
+    /***
+     * Not supported here
+     */
+    override suspend fun getAnimePartCollection(id: List<Long>): Result<List<AnimePart>> {
+        throw RuntimeException("Not supported by API")
+    }
+
+    /***
+     * Not supported here
+     */
+    override suspend fun insertCollectionOfAnimePart(anime: List<AnimePart>) {
         throw RuntimeException("Not supported by API")
     }
 }

@@ -26,4 +26,5 @@ class FakeRemoteAnimeDataSource : AnimeDataSource {
 
     override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
     }
+
 }

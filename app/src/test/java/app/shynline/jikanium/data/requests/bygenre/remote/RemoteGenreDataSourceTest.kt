@@ -3,8 +3,8 @@ package app.shynline.jikanium.data.requests.bygenre.remote
 import app.shynline.jikanium.JikanApi
 import app.shynline.jikanium.RandomException
 import app.shynline.jikanium.data.Result
-import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.requests.bygenre.AnimePageWrapper
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import com.google.common.truth.Truth.assertThat
 import io.mockk.coEvery
@@ -44,12 +44,12 @@ class RemoteGenreDataSourceTest {
     @Test
     fun test_getAnimeGenreByPage_successful() = runBlocking {
 
-        val data: MutableList<Anime> = mutableListOf()
+        val data: MutableList<AnimePart> = mutableListOf()
         listOf<Long>(2, 3, 4).forEach {
-            data.add(Anime(id = it, cached = true, expiryDate = Date().time * 2))
+            data.add(AnimePart(id = it))
         }
         val apw = AnimePageWrapper(
-            animes = data,
+            animeParts = data,
             genrePage = GenrePage(pageNumber = 1, cached = true, expiryDate = Date().time * 2)
         )
         apw.count = 5000

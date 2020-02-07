@@ -2,9 +2,9 @@ package app.shynline.jikanium.data.requests.bygenre.remote
 
 import app.shynline.jikanium.RandomException
 import app.shynline.jikanium.data.Result
-import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.requests.bygenre.AnimePageWrapper
 import app.shynline.jikanium.data.requests.bygenre.GenreDataSource
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
 import java.util.*
@@ -12,7 +12,7 @@ import java.util.*
 class FakeRemoteGenreDataSource : GenreDataSource {
 
     var existed = false
-    var animes: List<Anime> = listOf()
+    var animes: List<AnimePart> = listOf()
     override suspend fun getAnimeGenre(genre: Int): Result<GenreWithPage> {
         null!!
     }
@@ -20,7 +20,7 @@ class FakeRemoteGenreDataSource : GenreDataSource {
     override suspend fun getAnimeGenreByPage(genre: Int, page: Int): Result<AnimePageWrapper> {
         return if (existed) {
             val apw = AnimePageWrapper(
-                animes = animes,
+                animeParts = animes,
                 genrePage = GenrePage(
                     pageNumber = page,
                     cached = true,
@@ -37,5 +37,13 @@ class FakeRemoteGenreDataSource : GenreDataSource {
     }
 
     override suspend fun updateAnimeGenre(genreWithPage: GenreWithPage) {
+    }
+
+    override suspend fun getAnimePartCollection(id: List<Long>): Result<List<AnimePart>> {
+        null!!
+    }
+
+    override suspend fun insertCollectionOfAnimePart(anime: List<AnimePart>) {
+
     }
 }

@@ -4,6 +4,7 @@ import app.shynline.jikanium.data.Result
 import app.shynline.jikanium.data.Result.Error
 import app.shynline.jikanium.data.requests.bygenre.AnimePageWrapper
 import app.shynline.jikanium.data.requests.bygenre.GenreDataSource
+import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -58,6 +59,30 @@ class LocalGenreDataSource @Inject constructor(
      */
     override suspend fun getAnimeGenreByPage(genre: Int, page: Int): Result<AnimePageWrapper> {
         throw RuntimeException("Not supported!")
+    }
+
+    /***
+     * Get anime part collection
+     */
+    override suspend fun getAnimePartCollection(id: List<Long>): Result<List<AnimePart>> =
+        withContext(ioDispatcher) {
+            return@withContext try {
+                val anime = genreDao.getAnimePartCollectionById(id)
+                if (anime.isNotEmpty()) {
+                    Result.Success(anime)
+                } else {
+                    Error(Exception("Anime not found!"))
+                }
+            } catch (e: Exception) {
+                Error(e)
+            }
+        }
+
+    /***
+     * Insert a collection of anime part
+     */
+    override suspend fun insertCollectionOfAnimePart(anime: List<AnimePart>) {
+        genreDao.insertCollectionOfAnimePart(anime)
     }
 
 }
