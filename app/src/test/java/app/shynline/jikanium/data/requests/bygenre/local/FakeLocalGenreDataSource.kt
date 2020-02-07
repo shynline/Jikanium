@@ -7,13 +7,17 @@ import app.shynline.jikanium.data.requests.bygenre.AnimePageWrapper
 import app.shynline.jikanium.data.requests.bygenre.GenreDataSource
 import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
-
+/***
+ * LocalGenreDataSource Double
+ */
 class FakeLocalGenreDataSource : GenreDataSource {
 
 
     var existed = false
     var pageCount = 4000L
-
+    /***
+     *
+     */
     override suspend fun getAnimeGenre(genre: Int): Result<GenreWithPage> {
         return if (existed) {
             val genreO = GenreTestUtil.createAnimeGenre(genre, pageCount)
@@ -24,16 +28,30 @@ class FakeLocalGenreDataSource : GenreDataSource {
         }
     }
 
+    /***
+     *
+     */
     override suspend fun getAnimeGenreByPage(genre: Int, page: Int): Result<AnimePageWrapper> {
         null!!
     }
 
+    /***
+     *
+     */
     override suspend fun insertAnimeGenre(genreWithPage: GenreWithPage) {
+        // Not needed
     }
 
+    /***
+     *
+     */
     override suspend fun updateAnimeGenre(genreWithPage: GenreWithPage) {
+        // Not needed
     }
 
+    /***
+     *
+     */
     override suspend fun getAnimePartCollection(id: List<Long>): Result<List<AnimePart>> {
         return if (existed) {
 
@@ -47,6 +65,10 @@ class FakeLocalGenreDataSource : GenreDataSource {
         }
     }
 
+    /***
+     *
+     */
     override suspend fun insertCollectionOfAnimePart(anime: List<AnimePart>) {
+        // Not needed
     }
 }

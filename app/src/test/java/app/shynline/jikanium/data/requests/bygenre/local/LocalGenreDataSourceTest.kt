@@ -9,26 +9,31 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-
+/***
+ * LocalGenreDataSourceTest
+ */
 class LocalGenreDataSourceTest {
 
 
     private lateinit var localGenreDataSource: LocalGenreDataSource
     private val genreDao = mockk<GenreDao>()
 
+    /***
+     * Instantiating LocalGenreDataSource
+     */
     @Before
     fun setUp() {
         localGenreDataSource = LocalGenreDataSource(genreDao, Dispatchers.Unconfined)
     }
 
-    @After
-    fun tearDown() {
-    }
 
+    /***
+     * getAnimeGenre method
+     * when api returns exception
+     */
     @Test
     fun test_getAnimeGenre_APIThrowsException() = runBlocking {
         coEvery { genreDao.getAnimeGenre(any()) } throws RandomException()
@@ -39,6 +44,10 @@ class LocalGenreDataSourceTest {
         assertThat(response.exception).isInstanceOf(RandomException::class.java)
     }
 
+    /***
+     * getAnimeGenre method
+     * when api returns successfully
+     */
     @Test
     fun test_getAnimeGenre_APISuccessful() = runBlocking {
         val genreO = GenreTestUtil.createAnimeGenre(1, 4000)
@@ -56,6 +65,10 @@ class LocalGenreDataSourceTest {
         }
     }
 
+    /***
+     * getAnimeGenre method
+     * when api returns null
+     */
     @Test
     fun test_getAnimeGenre_APIReturnsNull() = runBlocking {
         coEvery { genreDao.getAnimeGenre(any()) } returns null

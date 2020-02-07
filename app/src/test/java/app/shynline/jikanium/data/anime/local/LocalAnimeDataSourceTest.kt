@@ -8,11 +8,12 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
-
 import org.junit.Test
 
+/***
+ * LocalAnimeDataSourceTest
+ */
 class LocalAnimeDataSourceTest {
 
     companion object {
@@ -22,11 +23,18 @@ class LocalAnimeDataSourceTest {
     private var animeDao = mockk<AnimeDao>()
     private lateinit var localAnimeDataSource: LocalAnimeDataSource
 
+    /***
+     * Instantiating LocalAnimeDataSource
+     */
     @Before
     fun setUp() {
         localAnimeDataSource = LocalAnimeDataSource(animeDao, Dispatchers.Unconfined)
     }
 
+    /***
+     * getAnime method
+     * throws an exception
+     */
     @Test
     fun test_getAnime_APIThrowsException() = runBlocking {
         coEvery { animeDao.getAnimeById(any()) } throws RandomException()
@@ -37,6 +45,10 @@ class LocalAnimeDataSourceTest {
         assertThat(response.exception).isInstanceOf(RandomException::class.java)
     }
 
+    /***
+     * getAnime method
+     * returns successfully
+     */
     @Test
     fun test_getAnime_APISuccessful() = runBlocking {
         coEvery { animeDao.getAnimeById(any()) } returns Anime(id = ANIME_ID)
@@ -47,6 +59,10 @@ class LocalAnimeDataSourceTest {
         assertThat(response.data.id).isEqualTo(ANIME_ID)
     }
 
+    /***
+     * getAnime method
+     * returns null
+     */
     @Test
     fun test_getAnime_APIReturnsNull() = runBlocking {
         coEvery { animeDao.getAnimeById(any()) } returns null
@@ -59,7 +75,4 @@ class LocalAnimeDataSourceTest {
         assertThat(response.exception.message).matches("Anime not found!")
     }
 
-    @After
-    fun tearDown() {
-    }
 }

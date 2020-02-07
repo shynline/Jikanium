@@ -8,20 +8,29 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+/***
+ * DefaultAnimeRepositoryTest
+ */
 class DefaultAnimeRepositoryTest {
 
+    /**
+     * Instantiating Fake data source
+     */
     private val fakeLocalAnimeDataSource = FakeLocalAnimeDataSource()
     private val fakeRemoteAnimeDataSource = FakeRemoteAnimeDataSource()
+
     private lateinit var defaultAnimeRepository: DefaultAnimeRepository
 
     companion object {
         const val ANIME_ID = 69L
     }
 
+    /***
+     * Instantiating DefaultAnimeRepository
+     */
     @Before
     fun setUp() {
         defaultAnimeRepository = DefaultAnimeRepository(
@@ -31,6 +40,10 @@ class DefaultAnimeRepositoryTest {
         )
     }
 
+    /***
+     * getAnime method
+     * when localData is not expired
+     */
     @Test
     fun test_getAnime_localDataNotExpired() = runBlocking {
         defaultAnimeRepository.refreshCache()
@@ -45,6 +58,10 @@ class DefaultAnimeRepositoryTest {
 
     }
 
+    /***
+     * getAnime method
+     * when Local Data is expired
+     */
     @Test
     fun test_getAnime_localDataExpired() = runBlocking {
         defaultAnimeRepository.refreshCache()
@@ -65,6 +82,11 @@ class DefaultAnimeRepositoryTest {
 
     }
 
+
+    /***
+     * getAnime method
+     * wen local data is expired and remote returns an error
+     */
     @Test
     fun test_getAnime_localDataExpired_remoteError() = runBlocking {
         defaultAnimeRepository.refreshCache()
@@ -85,6 +107,10 @@ class DefaultAnimeRepositoryTest {
 
     }
 
+    /***
+     * getAnime method
+     * when remote returns an error
+     */
     @Test
     fun test_getAnime_remoteError() = runBlocking {
         defaultAnimeRepository.refreshCache()
@@ -105,6 +131,10 @@ class DefaultAnimeRepositoryTest {
 
     }
 
+    /***
+     * getAnime method
+     * when remote returns data
+     */
     @Test
     fun test_getAnime_remoteData() = runBlocking {
         defaultAnimeRepository.refreshCache()
@@ -126,6 +156,10 @@ class DefaultAnimeRepositoryTest {
     }
 
 
+    /***
+     * getAnime method
+     * when data is cached
+     */
     @Test
     fun test_getAnime_cachedData() = runBlocking {
 
@@ -144,7 +178,4 @@ class DefaultAnimeRepositoryTest {
         }
     }
 
-    @After
-    fun tearDown() {
-    }
 }

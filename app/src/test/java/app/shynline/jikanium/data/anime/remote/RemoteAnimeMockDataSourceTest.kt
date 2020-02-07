@@ -9,11 +9,13 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
 
+/***
+ * RemoteAnimeMockDataSourceTest
+ */
 class RemoteAnimeMockDataSourceTest {
 
     companion object {
@@ -23,6 +25,9 @@ class RemoteAnimeMockDataSourceTest {
     private var jikanApi = mockk<JikanApi>()
     private lateinit var remoteAnimeDataSource: RemoteAnimeDataSource
 
+    /***
+     * Instantiating RemoteAnimeMockDataSource
+     */
     @Before
     fun setUp() {
         remoteAnimeDataSource = RemoteAnimeDataSource(jikanApi, Dispatchers.Unconfined)
@@ -30,6 +35,10 @@ class RemoteAnimeMockDataSourceTest {
     }
 
 
+    /***
+     * getAnime method
+     * throws an exception
+     */
     @Test
     fun test_getAnime_throwsException() = runBlocking {
         coEvery { jikanApi.getAnime(any()) } throws RandomException()
@@ -42,6 +51,10 @@ class RemoteAnimeMockDataSourceTest {
 
     }
 
+    /***
+     * getAnime method
+     * returns successfully
+     */
     @Test
     fun test_getAnime_successful() = runBlocking {
 
@@ -54,7 +67,4 @@ class RemoteAnimeMockDataSourceTest {
         assertThat(response.data.id).isEqualTo(ANIME_ID)
     }
 
-    @After
-    fun tearDown() {
-    }
 }

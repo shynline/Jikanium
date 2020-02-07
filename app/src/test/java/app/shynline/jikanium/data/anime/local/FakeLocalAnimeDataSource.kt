@@ -6,11 +6,14 @@ import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.anime.AnimeDataSource
 import java.util.*
 
+/***
+ * FakeLocalAnimeDataSource
+ */
 class FakeLocalAnimeDataSource : AnimeDataSource {
 
     var existed = false
     var expired = false
-
+    /***/
     override suspend fun getAnime(id: Long): Result<Anime> {
         return if (existed) {
             if (expired) {
@@ -23,9 +26,12 @@ class FakeLocalAnimeDataSource : AnimeDataSource {
         }
     }
 
+    /***/
     override suspend fun insertAnime(anime: Anime) {
+        // Not needed
     }
 
+    /***/
     override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
         return if (existed) {
             if (expired) {
@@ -46,7 +52,8 @@ class FakeLocalAnimeDataSource : AnimeDataSource {
         }
     }
 
+    /***/
     override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
-
+        // Not needed
     }
 }

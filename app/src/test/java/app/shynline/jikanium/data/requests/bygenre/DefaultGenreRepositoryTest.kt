@@ -8,11 +8,12 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-
+/***
+ * DefaultGenreRepositoryTest
+ */
 class DefaultGenreRepositoryTest {
 
 
@@ -24,6 +25,9 @@ class DefaultGenreRepositoryTest {
         const val ANIME_ID = 69L
     }
 
+    /***
+     * Instantiating DefaultGenreRepository
+     */
     @Before
     fun setUp() {
         defaultGenreRepository = DefaultGenreRepository(
@@ -31,10 +35,11 @@ class DefaultGenreRepositoryTest {
         )
     }
 
-    @After
-    fun tearDown() {
-    }
 
+    /***
+     * getAnimeListByGenre method
+     * when it suppose to load from cache
+     */
     @Test
     fun test_getAnimeListByGenre_loadFromCache() = runBlocking {
         defaultGenreRepository.refreshCache()
@@ -55,6 +60,10 @@ class DefaultGenreRepositoryTest {
             }
     }
 
+    /***
+     * getAnimeListByGenre method
+     * when it suppose to load from local data base
+     */
     @Test
     fun test_getAnimeListByGenre_loadFromLocal() = runBlocking {
         defaultGenreRepository.refreshCache()
@@ -72,6 +81,10 @@ class DefaultGenreRepositoryTest {
             }
     }
 
+    /***
+     * getAnimeListByGenre method
+     * when it suppose to load data from api
+     */
     @Test
     fun test_getAnimeListByGenre_loadFromRemote() = runBlocking {
         defaultGenreRepository.refreshCache()
@@ -89,6 +102,10 @@ class DefaultGenreRepositoryTest {
             }
     }
 
+    /***
+     * getAnimeListByGenre method
+     * error case
+     */
     @Test
     fun test_getAnimeListByGenre_error() = runBlocking {
         defaultGenreRepository.refreshCache()

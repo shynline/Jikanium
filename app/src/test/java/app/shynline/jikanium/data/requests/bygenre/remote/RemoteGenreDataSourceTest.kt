@@ -11,24 +11,32 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
 import java.util.*
 
-
+/***
+ * RemoteGenreDataSourceTest
+ */
 class RemoteGenreDataSourceTest {
 
 
     private val jikanApi = mockk<JikanApi>()
     private lateinit var remoteGenreDataSource: RemoteGenreDataSource
 
+    /***
+     * Instantiating RemoteGenreDataSource
+     */
     @Before
     fun setUp() {
         remoteGenreDataSource = RemoteGenreDataSource(jikanApi, Dispatchers.Unconfined)
     }
 
+    /***
+     * getAnimeGenreByPage method
+     * when throws Exception
+     */
     @Test
     fun test_getAnimeGenreByPage_throwsException() = runBlocking {
         coEvery { jikanApi.getAnimeListByGenre(any(), any()) } throws RandomException()
@@ -41,6 +49,10 @@ class RemoteGenreDataSourceTest {
 
     }
 
+    /***
+     * getAnimeGenreByPage method
+     * when return successful result
+     */
     @Test
     fun test_getAnimeGenreByPage_successful() = runBlocking {
 
@@ -63,9 +75,5 @@ class RemoteGenreDataSourceTest {
         response = response as Result.Success
         assertThat(response.data).isEqualTo(apw)
 
-    }
-
-    @After
-    fun tearDown() {
     }
 }
