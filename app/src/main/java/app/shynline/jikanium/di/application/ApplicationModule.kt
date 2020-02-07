@@ -29,7 +29,9 @@ import javax.inject.Qualifier
 import javax.inject.Scope
 import javax.inject.Singleton
 
-
+/***
+ * Application Module
+ */
 @Module(
     includes = [
         ApplicationModuleObject::class

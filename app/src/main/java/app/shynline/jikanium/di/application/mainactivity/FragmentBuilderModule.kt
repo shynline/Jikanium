@@ -13,6 +13,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
+/***
+ * Fragment Builder Module
+ */
 @Module
 abstract class FragmentBuilderModule {
     @ContributesAndroidInjector(
@@ -23,6 +26,9 @@ abstract class FragmentBuilderModule {
     )
     abstract fun animeFragment(): AnimeFragment
 
+    /***
+     * Injecting anime fragment view model
+     */
     @Binds
     @IntoMap
     @ViewModelKey(AnimeViewModel::class)
@@ -36,6 +42,9 @@ abstract class FragmentBuilderModule {
     )
     abstract fun animeListByGenreFragment(): AnimeListByGenreFragment
 
+    /***
+     * Injecting Anime list by genre view model
+     */
     @Binds
     @IntoMap
     @ViewModelKey(AnimeListByGenreViewModel::class)

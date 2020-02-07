@@ -10,6 +10,10 @@ import app.shynline.jikanium.databinding.AnimeFragmentBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
+/***
+ * Anime Fragment
+ *  Details of an anime
+ */
 class AnimeFragment : DaggerFragment() {
 
 

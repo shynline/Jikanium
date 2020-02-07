@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/***
+ * Anime View model
+ */
 class AnimeViewModel @Inject constructor(
     private val animeRepository: AnimeRepository
 ) : ViewModel() {

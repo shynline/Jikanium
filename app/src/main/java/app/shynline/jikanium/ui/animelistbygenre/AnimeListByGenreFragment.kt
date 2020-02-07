@@ -20,7 +20,9 @@ import com.google.android.flexbox.*
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-
+/***
+ * Anime List By Genre Fragment
+ */
 class AnimeListByGenreFragment : DaggerFragment() {
 
     companion object {
@@ -87,7 +89,7 @@ class AnimeListByGenreFragment : DaggerFragment() {
         viewDataBinding.motionLayout.setTransitionListener(object :
             MotionLayout.TransitionListener {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
-
+                // Not needed
             }
 
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
@@ -113,6 +115,7 @@ class AnimeListByGenreFragment : DaggerFragment() {
             }
 
             override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+                // Not needed
             }
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
