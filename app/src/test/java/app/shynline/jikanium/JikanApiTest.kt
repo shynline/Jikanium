@@ -16,6 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.logging.Level
 import java.util.logging.Logger
 
+/***
+ * Testing Retrofit API with mockWebServer
+ */
 class JikanApiTest {
 
 
@@ -23,6 +26,11 @@ class JikanApiTest {
     private lateinit var jikanApi: JikanApi
 
 
+    /***
+     * Decrease log level
+     * start mock server
+     * and configure retrofit
+     */
     @Before
     fun setup() {
         Logger.getLogger(MockWebServer::class.java.name).level = Level.WARNING
@@ -34,6 +42,9 @@ class JikanApiTest {
             .build().create(JikanApi::class.java)
     }
 
+    /***
+     * Test Single Anime Request
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testAnimeResponse() = runBlocking {
@@ -53,6 +64,9 @@ class JikanApiTest {
     }
 
 
+    /***
+     * Shutting down server
+     */
     @After
     fun teardown() {
         mockWebServer.shutdown()

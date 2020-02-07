@@ -43,6 +43,9 @@ class AnimeListAdapter(private val viewModel: AnimeListByGenreViewModel) :
         }
 
         companion object {
+            /***
+             * Create ViewHolder
+             */
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = AnimeItemBinding.inflate(layoutInflater, parent, false)

@@ -39,54 +39,85 @@ import javax.inject.Singleton
 )
 abstract class ApplicationModule {
 
+    /***
+     * Activity Scope
+     */
     @Scope
     @Retention(AnnotationRetention.RUNTIME)
     annotation class ActivityScope
 
+    /***
+     * Fragment Scope
+     */
     @Scope
     @Retention(AnnotationRetention.RUNTIME)
     annotation class FragmentScope
 
+    /***
+     * Annotation for Local DataSource
+     */
     @Qualifier
     @Retention(AnnotationRetention.RUNTIME)
     annotation class LocalDataSource
 
+    /***
+     * Annotation for Remote DataSource
+     */
     @Qualifier
     @Retention(AnnotationRetention.RUNTIME)
     annotation class RemoteDataSource
 
+    /***
+     * Binding LocalAnimeDataSource
+     */
     @Singleton
     @LocalDataSource
     @Binds
     abstract fun bindLocalDataSource(localAnimeDataSource: LocalAnimeDataSource): AnimeDataSource
 
+    /***
+     * Binding RemoteAnimeDataSource
+     */
     @Singleton
     @RemoteDataSource
     @Binds
     abstract fun bindRemoteDataSource(remoteAnimeDataSource: RemoteAnimeDataSource): AnimeDataSource
 
+    /***
+     * Binding LocalGenreDataSource
+     */
     @Singleton
     @LocalDataSource
     @Binds
     abstract fun bindLocalGenreDataSource(localGenreDataSource: LocalGenreDataSource): GenreDataSource
 
+    /***
+     * Binding RemoteGenreDataSource
+     */
     @Singleton
     @RemoteDataSource
     @Binds
     abstract fun bindRemoteGenreDataSource(remoteGenreDataSource: RemoteGenreDataSource): GenreDataSource
 
 
-
+    /***
+     * Binding DefaultAnimeRepository
+     */
     @Singleton
     @Binds
     abstract fun bindAnimeRepository(animeRepository: DefaultAnimeRepository): AnimeRepository
 
+    /***
+     * Binding DefaultGenreRepository
+     */
     @Singleton
     @Binds
     abstract fun bindGenreRepository(genreRepository: DefaultGenreRepository): GenreRepository
 }
 
-
+/***
+ * Application Module Object
+ */
 @Module
 object ApplicationModuleObject {
     @Singleton

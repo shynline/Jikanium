@@ -1,4 +1,6 @@
 package app.shynline.jikanium
 
-class RandomException : Exception("test") {
-}
+/***
+ * A For Test Only Exception
+ */
+class RandomException : Exception("test")

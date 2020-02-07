@@ -14,11 +14,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.logging.Level
 import java.util.logging.Logger
 
+/***
+ * Test General use case of JikanApi Interface
+ */
 class GeneralResponseJikanApiTest {
     private var mockWebServer = MockWebServer()
     private lateinit var jikanApi: JikanApi
 
 
+    /***
+     * Decrease log level
+     * start mock server
+     * and configure retrofit
+     */
     @Before
     fun setup() {
         Logger.getLogger(MockWebServer::class.java.name).level = Level.WARNING
@@ -29,6 +37,9 @@ class GeneralResponseJikanApiTest {
             .build().create(JikanApi::class.java)
     }
 
+    /***
+     * Mock Internal Server Error response
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testInternalServerError() = runBlocking {
@@ -42,6 +53,10 @@ class GeneralResponseJikanApiTest {
         assertThat((res as Result.Error).exception).isInstanceOf(InternalServerError::class.java)
     }
 
+    /***
+     * Mock Too Many Request response
+     * (Jikan API Specific Error)
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testTooManyRequest() = runBlocking {
@@ -54,6 +69,10 @@ class GeneralResponseJikanApiTest {
         assertThat((res as Result.Error).exception).isInstanceOf(TooManyRequest::class.java)
     }
 
+    /***
+     * Mock Method Not Allowed response
+     * (Jikan API Specific Error)
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testMethodNotAllowed() = runBlocking {
@@ -66,6 +85,9 @@ class GeneralResponseJikanApiTest {
         assertThat((res as Result.Error).exception).isInstanceOf(MethodNotAllowed::class.java)
     }
 
+    /***
+     * Mock Not Found response
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testNotFound() = runBlocking {
@@ -79,6 +101,9 @@ class GeneralResponseJikanApiTest {
     }
 
 
+    /***
+     * Mock Bad Request response
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testBadRequest() = runBlocking {
@@ -91,6 +116,10 @@ class GeneralResponseJikanApiTest {
         assertThat((res as Result.Error).exception).isInstanceOf(BadRequest::class.java)
     }
 
+    /***
+     * Mock Not Modified response
+     * (Jikan API Specific Error)
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun testNotModified() = runBlocking {
@@ -103,6 +132,9 @@ class GeneralResponseJikanApiTest {
     }
 
 
+    /***
+     * Shutting down the server
+     */
     @After
     fun teardown() {
         mockWebServer.shutdown()

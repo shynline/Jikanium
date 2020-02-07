@@ -3,7 +3,13 @@ package app.shynline.jikanium
 import app.shynline.jikanium.data.requests.bygenre.db.Genre
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 
+/***
+ * Genre Test Util
+ */
 object GenreTestUtil {
+    /***
+     * Create a Single Anime
+     */
     fun createAnimeGenre(genre: Int, count: Long = 4000): Genre {
         return Genre(
             type = 1,
@@ -12,6 +18,9 @@ object GenreTestUtil {
         )
     }
 
+    /***
+     * Mock a Anime Pages for Specific genre
+     */
     fun createPagesForGenre(
         genreId: String,
         pagesCount: Int = 10,

@@ -10,6 +10,9 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
+/***
+ * Application Component Class For Dagger2
+ */
 @Singleton
 @Component(
     modules = [

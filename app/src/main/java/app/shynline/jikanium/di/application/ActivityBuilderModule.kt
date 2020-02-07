@@ -6,8 +6,14 @@ import app.shynline.jikanium.di.application.mainactivity.JikanActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+/***
+ * Activity Builder module
+ */
 @Module
 abstract class ActivityBuilderModule {
+    /***
+     * Injecting Jikan Activity
+     */
     @ContributesAndroidInjector(
         modules = [
             JikanActivityModule::class,
