@@ -24,10 +24,8 @@ Thanks to Kotlin Flow and Coroutine we don't need that anymore!
 
 It uses [Jikan](https://jikan.moe/)'s REST API
 
-
-# Preview
+## Preview
 <img src="assets/screen1.gif" width="32%"> 
-
 
 ## License
 
