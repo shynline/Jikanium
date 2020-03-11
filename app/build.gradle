@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'koin'
 //apply plugin: 'androidx.navigation.safeargs'
 
 android {
@@ -90,12 +91,12 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // Dagger
-    def dagger_version = '2.26'
-    api "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    api "com.google.dagger:dagger-android:$dagger_version"
-    api "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+//    def dagger_version = '2.26'
+//    api "com.google.dagger:dagger:$dagger_version"
+//    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+//    api "com.google.dagger:dagger-android:$dagger_version"
+//    api "com.google.dagger:dagger-android-support:$dagger_version"
+//    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
 
     // Room
@@ -150,5 +151,13 @@ dependencies {
     // Flex box
     implementation 'com.google.android:flexbox:2.0.1'
 
+    // Koin
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
 
 }

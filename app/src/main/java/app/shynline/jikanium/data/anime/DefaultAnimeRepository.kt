@@ -1,8 +1,6 @@
 package app.shynline.jikanium.data.anime
 
 import app.shynline.jikanium.data.Result
-import app.shynline.jikanium.di.application.ApplicationModule.LocalDataSource
-import app.shynline.jikanium.di.application.ApplicationModule.RemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -10,14 +8,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-import javax.inject.Inject
 
 /***
  * Default implementation of anime repository
  */
-class DefaultAnimeRepository @Inject constructor(
-    @LocalDataSource private val localAnimeDataSource: AnimeDataSource,
-    @RemoteDataSource private val remoteAnimeDataSource: AnimeDataSource,
+class DefaultAnimeRepository(
+    private val localAnimeDataSource: AnimeDataSource,
+    private val remoteAnimeDataSource: AnimeDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeRepository {
 

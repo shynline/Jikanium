@@ -8,12 +8,11 @@ import app.shynline.jikanium.data.toResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /***
  * Remote anime data source
  */
-class RemoteAnimeDataSource @Inject constructor(
+class RemoteAnimeDataSource(
     private val jikanApi: JikanApi,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeDataSource {

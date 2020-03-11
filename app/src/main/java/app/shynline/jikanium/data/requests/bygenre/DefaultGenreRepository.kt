@@ -5,22 +5,19 @@ import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.data.requests.bygenre.db.Genre
 import app.shynline.jikanium.data.requests.bygenre.db.GenrePage
 import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
-import app.shynline.jikanium.di.application.ApplicationModule.LocalDataSource
-import app.shynline.jikanium.di.application.ApplicationModule.RemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import java.util.concurrent.ConcurrentHashMap
-import javax.inject.Inject
 
 /***
  * Default implementation of genre repository
  */
-class DefaultGenreRepository @Inject constructor(
-    @LocalDataSource private val localGenreDataSource: GenreDataSource,
-    @RemoteDataSource private val remoteGenreDataSource: GenreDataSource,
+class DefaultGenreRepository(
+    private val localGenreDataSource: GenreDataSource,
+    private val remoteGenreDataSource: GenreDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GenreRepository {
 

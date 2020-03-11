@@ -4,23 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import app.shynline.jikanium.databinding.AnimeFragmentBinding
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /***
  * Anime Fragment
  *  Details of an anime
  */
-class AnimeFragment : DaggerFragment() {
+class AnimeFragment : Fragment() {
 
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel by viewModels<AnimeViewModel> { viewModelFactory }
+    private val viewModel: AnimeViewModel by viewModel()
     private lateinit var viewDataBinding: AnimeFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.shynline.jikanium.JikanActivity
@@ -17,13 +16,12 @@ import app.shynline.jikanium.constants.AnimeGenre
 import app.shynline.jikanium.constants.animeGenres
 import app.shynline.jikanium.databinding.AnimeListByGenreFragmentBinding
 import com.google.android.flexbox.*
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /***
  * Anime List By Genre Fragment
  */
-class AnimeListByGenreFragment : DaggerFragment() {
+class AnimeListByGenreFragment : Fragment() {
 
     companion object {
         fun newInstance() = AnimeListByGenreFragment()
@@ -38,11 +36,10 @@ class AnimeListByGenreFragment : DaggerFragment() {
     private var filterOpened = false
     private var isTransitioning = false
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private lateinit var viewDataBinding: AnimeListByGenreFragmentBinding
 
-    private val viewModel by viewModels<AnimeListByGenreViewModel> { viewModelFactory }
+    private val viewModel: AnimeListByGenreViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

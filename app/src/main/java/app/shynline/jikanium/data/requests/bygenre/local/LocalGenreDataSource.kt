@@ -9,12 +9,11 @@ import app.shynline.jikanium.data.requests.bygenre.db.GenreWithPage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /***
  * Local implementation of genre data source
  */
-class LocalGenreDataSource @Inject constructor(
+class LocalGenreDataSource(
     private val genreDao: GenreDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GenreDataSource {

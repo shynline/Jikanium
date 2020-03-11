@@ -9,12 +9,11 @@ import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.anime.AnimeRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /***
  * Anime View model
  */
-class AnimeViewModel @Inject constructor(
+class AnimeViewModel(
     private val animeRepository: AnimeRepository
 ) : ViewModel() {
 

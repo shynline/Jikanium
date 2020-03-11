@@ -3,14 +3,12 @@ package app.shynline.jikanium
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import app.shynline.jikanium.data.requests.bygenre.GenreRepository
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
-class JikanActivity : DaggerAppCompatActivity() {
+class JikanActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {
@@ -20,9 +18,6 @@ class JikanActivity : DaggerAppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    @Inject
-    lateinit var genreRepository: GenreRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +29,8 @@ class JikanActivity : DaggerAppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,
-                R.id.navigation_dashboard,
+//                R.id.navigation_home,
+//                R.id.navigation_dashboard,
                 R.id.navigation_animeListByGenreFragment
             )
         )

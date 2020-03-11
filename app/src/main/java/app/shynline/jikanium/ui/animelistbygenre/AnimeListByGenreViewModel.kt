@@ -10,9 +10,8 @@ import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
 import app.shynline.jikanium.utils.Event
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class AnimeListByGenreViewModel @Inject constructor(
+class AnimeListByGenreViewModel(
     private val genreRepository: GenreRepository
 ) : ViewModel() {
 

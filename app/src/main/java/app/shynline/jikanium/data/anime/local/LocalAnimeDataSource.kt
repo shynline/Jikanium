@@ -8,12 +8,11 @@ import app.shynline.jikanium.data.anime.AnimeDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /***
  * Local anime data source
  */
-class LocalAnimeDataSource @Inject constructor(
+class LocalAnimeDataSource(
     private val animeDao: AnimeDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AnimeDataSource {
