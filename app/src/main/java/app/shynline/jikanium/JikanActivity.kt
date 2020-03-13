@@ -16,7 +16,7 @@ class JikanActivity : AppCompatActivity() {
         } else if (item?.itemId == R.id.navigation_genreListFragment) {
             findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_genreListFragment)
         }
-        return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item ?: return false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
