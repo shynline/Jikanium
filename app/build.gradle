@@ -89,6 +89,7 @@ dependencies {
     def retrofit_version = "2.7.2"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // OKHTTP
     implementation "com.squareup.okhttp3:okhttp:4.4.0"
@@ -166,4 +167,5 @@ dependencies {
     // RXJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
 }
