@@ -12,17 +12,15 @@ This sample is written in Kotlin and uses the following Components:
 -   Room
 -   Retrofit
 -   GSON
--   Dagger2
+-   Koin - [Dagger2](https://github.com/shynline/Jikanium/tree/dagger2)
 -   Junit
 -   Mockk
 -   Truth
 -   Mockwebserver
 -   MotionLayout
- 
-There's no use case of RXJava in this project.
-Thanks to Kotlin Flow and Coroutine we don't need that anymore!
+-   RXJava
 
-It uses [Jikan](https://jikan.moe/)'s REST API
+Also the REST API I'm using is [Jikan](https://jikan.moe/)
 
 ## Preview
 <img src="assets/screen1.gif" width="32%"> 
