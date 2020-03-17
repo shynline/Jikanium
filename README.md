@@ -18,9 +18,6 @@ This sample is written in Kotlin and uses the following Components:
 -   Truth
 -   Mockwebserver
 -   MotionLayout
- 
-There's no use case of RXJava in this project.
-Thanks to Kotlin Flow and Coroutine we don't need that anymore!
 
 It uses [Jikan](https://jikan.moe/)'s REST API
 
