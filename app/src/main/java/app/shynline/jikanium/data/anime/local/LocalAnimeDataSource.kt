@@ -5,32 +5,35 @@ import app.shynline.jikanium.data.Result.Error
 import app.shynline.jikanium.data.Result.Success
 import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.anime.AnimeDataSource
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 /***
  * Local anime data source
  */
 class LocalAnimeDataSource(
     private val animeDao: AnimeDao,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val scheduler: Scheduler = Schedulers.io()
 ) : AnimeDataSource {
 
     /***
      * retrieve an anime by its id
      * or return an error result
      */
-    override suspend fun getAnime(id: Long): Result<Anime> = withContext(ioDispatcher) {
-        return@withContext try {
-            val anime = animeDao.getAnimeById(id)
-            if (anime != null) {
-                Success(anime)
-            } else {
-                Error(Exception("Anime not found!"))
-            }
+    override fun getAnime(id: Long): Single<Result<Anime>> {
+        return try {
+            animeDao.getAnimeById(id)
+                .map {
+                    if (it != null) {
+                        Success(it)
+                    } else {
+                        Error(Exception("Anime not found!"))
+                    }
+                }
+                .subscribeOn(scheduler)
         } catch (e: Exception) {
-            Error(e)
+            Single.just(Error(e))
         }
     }
 
@@ -38,31 +41,33 @@ class LocalAnimeDataSource(
      * retrieve a collection of anime by their id
      * or return an error result
      */
-    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> =
-        withContext(ioDispatcher) {
-            return@withContext try {
-                val anime = animeDao.getAnimeCollectionById(id)
-                if (anime.isNotEmpty()) {
-                    Success(anime)
-                } else {
-                    Error(Exception("Anime not found!"))
+    override fun getAnimeCollection(id: List<Long>): Single<Result<List<Anime>>> {
+        return try {
+            animeDao.getAnimeCollectionById(id)
+                .map {
+                    if (it.isNotEmpty()) {
+                        Success(it)
+                    } else {
+                        Error(Exception("Anime not found!"))
+                    }
                 }
-            } catch (e: Exception) {
-                Error(e)
-            }
+                .subscribeOn(scheduler)
+        } catch (e: Exception) {
+            Single.just(Error(e))
         }
+    }
 
     /***
      * Insert a single anime into database
      */
-    override suspend fun insertAnime(anime: Anime) = withContext(ioDispatcher) {
+    override fun insertAnime(anime: Anime) {
         animeDao.insertAnime(anime)
     }
 
     /***
      * Insert a collection of anime into database
      */
-    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
+    override fun insertCollectionOfAnime(anime: List<Anime>) {
         animeDao.insertCollectionOfAnime(anime)
     }
 }

@@ -5,22 +5,22 @@ import app.shynline.jikanium.data.Result
 import app.shynline.jikanium.data.anime.Anime
 import app.shynline.jikanium.data.anime.AnimeDataSource
 import app.shynline.jikanium.data.toResult
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 /***
  * Remote anime data source
  */
 class RemoteAnimeDataSource(
     private val jikanApi: JikanApi,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val scheduler: Scheduler = Schedulers.io()
 ) : AnimeDataSource {
 
     /***
      * This method should not be called
      */
-    override suspend fun getAnimeCollection(id: List<Long>): Result<List<Anime>> {
+    override fun getAnimeCollection(id: List<Long>): Single<Result<List<Anime>>> {
         throw RuntimeException("Not supported by API")
     }
 
@@ -28,33 +28,36 @@ class RemoteAnimeDataSource(
     /***
      * Fetch an anime by id from remote api
      */
-    override suspend fun getAnime(id: Long): Result<Anime> = withContext(ioDispatcher) {
-        return@withContext try {
-            val raw = jikanApi.getAnime(id)
-            val res = raw.toResult()
-            if (res is Result.Success) {
-                res.data.updateCache(
-                    raw.headers()["X-Request-Cached"],
-                    raw.headers()["X-Request-Cache-Ttl"]
-                )
-            }
-            res
+    override fun getAnime(id: Long): Single<Result<Anime>> {
+        return try {
+            jikanApi.getAnime(id)
+                .map {
+                    val res = it.toResult()
+                    if (res is Result.Success) {
+                        res.data.updateCache(
+                            it.headers()["X-Request-Cached"],
+                            it.headers()["X-Request-Cache-Ttl"]
+                        )
+                    }
+                    res
+                }
+                .subscribeOn(scheduler)
         } catch (e: Exception) {
-            Result.Error(e)
+            Single.just(Result.Error(e))
         }
     }
 
     /***
      * This method should not be called
      */
-    override suspend fun insertAnime(anime: Anime) {
+    override fun insertAnime(anime: Anime) {
         throw RuntimeException("Not supported by API")
     }
 
     /***
      * This method should not be called
      */
-    override suspend fun insertCollectionOfAnime(anime: List<Anime>) {
+    override fun insertCollectionOfAnime(anime: List<Anime>) {
         throw RuntimeException("Not supported by API")
     }
 }
