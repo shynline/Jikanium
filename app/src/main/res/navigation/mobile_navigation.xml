@@ -6,11 +6,6 @@
 
 
     <fragment
-        android:id="@+id/animeFragment"
-        android:name="app.shynline.jikanium.ui.anime.AnimeFragment"
-        android:label="AnimeFragment" />
-
-    <fragment
         android:id="@+id/navigation_animeListByGenreFragment"
         android:name="app.shynline.jikanium.ui.animelistbygenre.AnimeListByGenreFragment"
         android:label="Anime list" />
