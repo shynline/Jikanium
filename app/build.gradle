@@ -70,7 +70,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0-beta01'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -85,12 +85,12 @@ dependencies {
 
 
     // Retrofit
-    def retrofit_version = "2.7.2"
+    def retrofit_version = '2.8.1'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // OKHTTP
-    implementation "com.squareup.okhttp3:okhttp:4.4.1"
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
 
     // Dagger
 //    def dagger_version = '2.26'
@@ -102,7 +102,7 @@ dependencies {
 
 
     // Room
-    def room_version = "2.2.4"
+    def room_version = '2.2.5'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
@@ -121,14 +121,14 @@ dependencies {
 
 
     // MockWebServer
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.4.1"
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.5.0'
 
     // Truth
     testImplementation 'com.google.truth:truth:1.0.1'
     androidTestImplementation 'com.google.truth:truth:1.0.1'
 
     // Fragment
-    def fragment_version = "1.2.2"
+    def fragment_version = '1.2.4'
     // Java language implementation
 //    implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
@@ -145,9 +145,10 @@ dependencies {
     testImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
-    // Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    // Coil
+    implementation "io.coil-kt:coil:0.9.5"
+//    implementation "com.github.Commit451.coil-transformations:transformations:0.0.4"
+    implementation "com.github.Commit451.coil-transformations:transformations-gpu:0.0.4"
 
 
     // Flex box

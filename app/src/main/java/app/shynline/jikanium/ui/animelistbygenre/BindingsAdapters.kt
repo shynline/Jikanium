@@ -4,14 +4,12 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.shynline.jikanium.data.requests.bygenre.db.AnimePart
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import coil.api.load
 
 
 @BindingAdapter(value = ["imageUrl"])
 fun loadImageUrl(view: ImageView, url: String) {
-    Glide.with(view).load(url)
-        .apply(RequestOptions().centerCrop()).into(view)
+    view.load(url)
 }
 
 /**

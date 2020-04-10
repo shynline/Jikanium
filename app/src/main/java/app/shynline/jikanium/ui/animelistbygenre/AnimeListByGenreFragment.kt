@@ -60,7 +60,6 @@ class AnimeListByGenreFragment : Fragment() {
         viewDataBinding.list.layoutManager = glm
         viewDataBinding.list.adapter = AnimeListAdapter(viewModel)
         viewDataBinding.list.itemAnimator
-
         viewDataBinding.list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             var pastVisibleItems = 0
             var visibleItemCount: Int = 0
