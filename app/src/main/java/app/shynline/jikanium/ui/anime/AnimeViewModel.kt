@@ -21,9 +21,9 @@ class AnimeViewModel(
     private val _anime = MutableLiveData<Anime>()
     val anime: LiveData<Anime> = _anime
 
-    init {
+    fun init(id: Long) {
         viewModelScope.launch {
-            animeRepository.getAnime(1).collect {
+            animeRepository.getAnime(id).collect {
                 when (it) {
                     is Result.Success -> {
                         _anime.value = it.data
@@ -37,7 +37,4 @@ class AnimeViewModel(
 
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

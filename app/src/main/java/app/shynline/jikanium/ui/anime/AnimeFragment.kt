@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import app.shynline.jikanium.databinding.AnimeFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,10 +17,16 @@ class AnimeFragment : Fragment() {
 
     private val viewModel: AnimeViewModel by viewModel()
     private lateinit var viewDataBinding: AnimeFragmentBinding
+    private var id: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        arguments?.let {
+            id = AnimeFragmentArgs.fromBundle(it).id
+        }
+        if (id == 0L) {
+            findNavController().navigateUp()
+        }
     }
 
     override fun onCreateView(
@@ -30,6 +37,8 @@ class AnimeFragment : Fragment() {
             viewmodel = viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }
+        if (savedInstanceState == null)
+            viewModel.init(id)
 
         return viewDataBinding.root
     }
