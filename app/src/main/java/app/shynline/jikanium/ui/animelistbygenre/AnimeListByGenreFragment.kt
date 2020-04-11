@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.shynline.jikanium.JikanActivity
@@ -15,6 +16,7 @@ import app.shynline.jikanium.R
 import app.shynline.jikanium.constants.AnimeGenre
 import app.shynline.jikanium.constants.animeGenres
 import app.shynline.jikanium.databinding.AnimeListByGenreFragmentBinding
+import app.shynline.jikanium.utils.EventObserver
 import com.google.android.flexbox.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -159,6 +161,12 @@ class AnimeListByGenreFragment : Fragment() {
             }).apply {
                 submitList(animeGenres)
             }
+
+        viewModel.animeDetail.observe(viewLifecycleOwner, EventObserver {
+            val action = AnimeListByGenreFragmentDirections
+                .actionNavigationAnimeListByGenreFragmentToAnimeFragment(it)
+            findNavController().navigate(action)
+        })
 
 
 

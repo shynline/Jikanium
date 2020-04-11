@@ -22,10 +22,17 @@ class AnimeListByGenreViewModel(
     private val _loaded = MutableLiveData<Event<Unit>>()
     val loaded: LiveData<Event<Unit>> = _loaded
 
+    private val _animeDetail = MutableLiveData<Event<Long>>()
+    val animeDetail: LiveData<Event<Long>> = _animeDetail
+
 
     private fun resetState() {
         _items.value = emptyList()
         page = 1
+    }
+
+    fun openAnimeDetail(id: Long) {
+        _animeDetail.value = Event(id)
     }
 
 
