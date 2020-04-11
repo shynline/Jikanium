@@ -28,9 +28,12 @@ class AnimeViewModel(
                     is Result.Success -> {
                         _anime.value = it.data
                     }
-                    Result.NotModified -> TODO()
-                    Result.Loading -> TODO()
-                    is Result.Error -> TODO()
+                    Result.NotModified -> {
+                    }
+                    Result.Loading -> {
+                    }
+                    is Result.Error -> {
+                    }
                 }
             }
         }
