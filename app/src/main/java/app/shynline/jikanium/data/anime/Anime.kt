@@ -24,6 +24,10 @@ data class Anime @JvmOverloads constructor(
     @ColumnInfo(name = "id")
     var id: Long,
 
+    @SerializedName("image_url")
+    @ColumnInfo(name = "image_url")
+    var imageUrl: String? = null,
+
     @ColumnInfo(name = "cached")
     var cached: Boolean = false,
 
